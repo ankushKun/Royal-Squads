@@ -32,6 +32,7 @@ class Squads(commands.Cog):
         await ctx.send(embed=emb)
         return
       db.child("SQUADS").child(name).set(leader.id)
+      await ctx.invoke(self.bot.get_command('add'),mbr=leader,name=name)
       emb=discord.Embed(title=f"{str(ctx.author)} created a squad",description=f"Name : **{name}**\nLeader : {leader.mention}",color=0x00FF00)
       emb.set_footer(text="use squads command to see a list of squads")
       await ctx.send(embed=emb)
