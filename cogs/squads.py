@@ -99,7 +99,10 @@ class Squads(commands.Cog):
         dsc="No Members"
         sqd=[]
       for member in sqd:
-        m = await ctx.guild.fetch_member(member)
+        try:
+          m = await ctx.guild.fetch_member(member)
+        except:
+          m = f"**user with id {member} left the server**"
         dsc+=f"{str(m)}\n"
       emb=discord.Embed(title=name,description=dsc,color=0x0000FF)
       l=len(dsc.split('\n'))-1
