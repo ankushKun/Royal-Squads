@@ -1,3 +1,4 @@
 discord.py
 disputils
 python-decouple
+pyrebase4
