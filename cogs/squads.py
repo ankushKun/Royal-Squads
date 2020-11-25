@@ -128,7 +128,7 @@ class Squads(commands.Cog):
         return
       if squad_exists(name):
         db.child("MEMBERS").child(mbr.id).remove()
-        emb=discord.Embed(title=f"{str(ctx.author)} removed a member from {name}",description="")
+        emb=discord.Embed(title=f"{str(ctx.author)} removed a member from {name}",description="",color=0xFF0000)
         await ctx.send(embed=emb)
       else:
         emb=discord.Embed(title=f"That squad doesnot exist",description="Did you forget to create a squad?\nUse `create` command",color=0xFF0000)
