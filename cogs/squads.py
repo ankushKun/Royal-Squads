@@ -87,7 +87,7 @@ class Squads(commands.Cog):
       for sq in sqd:
         m = await ctx.guild.fetch_member(sqd[sq])
         dsc+=f"**{sq}** - {m.mention}\n"
-      emb=discord.Embed(title="Squad List",description=dsc+"\nTo join a squad DM the <@&780092798942445615>",color=0x0000FF)
+      emb=discord.Embed(title="Squad List",description=dsc+"\nTo join/create a squad ask the <@&780092798942445615>",color=0x0000FF)
       emb.set_footer(text=f"Total squads : {len(sqd)}")
     else:
       dsc=""
