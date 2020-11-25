@@ -86,14 +86,16 @@ class Squads(commands.Cog):
       emb=discord.Embed(title="Squad List",description=dsc+"\nTo join a squad DM the <@&780092798942445615>",color=0x0000FF)
       emb.set_footer(text=f"Total squads : {len(sqd)}")
     else:
-      sqd = dict(db.child("MEMBERS").get().val())
-      sqd = [k for k,v in sqd.items() if v.lower()==name]
       dsc=""
+      try:
+        sqd = dict(db.child("MEMBERS").get().val())
+        sqd = [k for k,v in sqd.items() if v.lower()==name]
+      except:
+        dsc="No Members"
+        sqd=[]
       for member in sqd:
         m = await ctx.guild.fetch_member(member)
         dsc+=f"{str(m)}\n"
-      if sqd==[]:
-        dsc="No Members"
       emb=discord.Embed(title=name,description=dsc,color=0x0000FF)
       l=len(dsc.split('\n'))-1
       emb.set_footer(text=f"{l}/5 members")
