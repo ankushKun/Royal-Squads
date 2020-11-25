@@ -74,12 +74,16 @@ class Squads(commands.Cog):
       
       
     
-  @commands.command(aliases=["sqd"])
+  @commands.command(aliases=["sqd","squads"])
   async def squad(self,ctx,*,name=""):
     name=name.lower()
     if name=="":
-      sqd = dict(db.child("SQUADS").get().val())
       dsc=""
+      try:
+        sqd = dict(db.child("SQUADS").get().val())
+      except:
+        dsc="No Squad created"
+        sqd=[]
       for sq in sqd:
         m = await ctx.guild.fetch_member(sqd[sq])
         dsc+=f"**{sq}** - {m.mention}\n"
