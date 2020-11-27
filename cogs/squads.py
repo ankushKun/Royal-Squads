@@ -86,11 +86,17 @@ class Squads(commands.Cog):
         dsc="No Squad created"
         sqd=[]
       for sq in sqd:
-        m = await ctx.guild.fetch_member(sqd[sq])
+        try:
+          m = await ctx.guild.fetch_member(sqd[sq])
+        except:
+          m=f"user with id {sqd[sq]} left the server"
         dsc+=f"**{sq}** - {m.mention}\n"
       emb=discord.Embed(title="Squad List",description=dsc+"\nTo join/create a squad ask the <@&780092798942445615>",color=0x0000FF)
       emb.set_footer(text=f"Total squads : {len(sqd)}")
     else:
+      if not squad_exists(name):
+        emb=discord.Embed(title="That Squad Doesnot Exist",description="To join/create a squad ask the <@&780092798942445615>",color=0xFF0000)
+        return
       dsc=""
       try:
         sqd = dict(db.child("MEMBERS").get().val())
