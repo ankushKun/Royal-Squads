@@ -87,7 +87,8 @@ class Squads(commands.Cog):
         sqd=[]
       for sq in sqd:
         try:
-          m = await ctx.guild.fetch_member(sqd[sq]).mention
+          m = await ctx.guild.fetch_member(sqd[sq])
+          m=m.mention
         except:
           m=f"user with id {sqd[sq]} left the server"
         dsc+=f"**{sq}** - {m}\n"
