@@ -87,10 +87,10 @@ class Squads(commands.Cog):
         sqd=[]
       for sq in sqd:
         try:
-          m = await ctx.guild.fetch_member(sqd[sq])
+          m = await ctx.guild.fetch_member(sqd[sq]).mention
         except:
           m=f"user with id {sqd[sq]} left the server"
-        dsc+=f"**{sq}** - {m.mention}\n"
+        dsc+=f"**{sq}** - {m}\n"
       emb=discord.Embed(title="Squad List",description=dsc+"\nTo join/create a squad ask the <@&780092798942445615>",color=0x0000FF)
       emb.set_footer(text=f"Total squads : {len(sqd)}")
     else:
