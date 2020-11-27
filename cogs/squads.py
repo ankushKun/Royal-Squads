@@ -17,7 +17,9 @@ def isOP(user):
   
 def squad_exists(name:str):
   sqds = dict(db.child("SQUADS").get().val())
-  return name in sqds
+  sqds = [n.lower() for n in sqds]
+  print(sqds)
+  return name.lower() in sqds
 
 class Squads(commands.Cog):
   def __init__(self,bot):
@@ -97,6 +99,7 @@ class Squads(commands.Cog):
     else:
       if not squad_exists(name):
         emb=discord.Embed(title="That Squad Doesnot Exist",description="To join/create a squad ask the <@&780092798942445615>",color=0xFF0000)
+        await ctx.send(embed=emb)
         return
       dsc=""
       try:
