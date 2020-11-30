@@ -13,12 +13,13 @@ roleid =780092798942445615
 
 def isOP(user):
   has_role = roleid in [role.id for role in user.roles] 
-  return user.id==weeblet or user.permissions.administrator or has_role
+  print(roleid in [role.id for role in user.roles] )
+  return has_role
   
 def squad_exists(name:str):
   sqds = dict(db.child("SQUADS").get().val())
   sqds = [n.lower() for n in sqds]
-  print(sqds)
+  #print(sqds)
   return name.lower() in sqds
 
 class Squads(commands.Cog):
@@ -38,6 +39,7 @@ class Squads(commands.Cog):
       emb=discord.Embed(title=f"{str(ctx.author)} created a squad",description=f"Name : **{name}**\nLeader : {leader.mention}",color=0x00FF00)
       emb.set_footer(text="use squads command to see a list of squads")
       await ctx.send(embed=emb)
+      
       
   @commands.command()
   async def delete(self,ctx,*,name:str=None):
